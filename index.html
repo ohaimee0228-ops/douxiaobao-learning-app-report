@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学习类 APP 市场调研报告（中国 × 美国）— 豆小包 AI 儿童手表游戏化专项</title>
+<style>
+  :root{
+    --ink:#1f2d3d; --ink2:#4a5a6a; --ink3:#8492a6;
+    --brand:#2f6fed; --brand-soft:#eaf1fe;
+    --cn:#e8590c; --cn-soft:#fff3e8;
+    --us:#2f6fed; --us-soft:#eaf1fe;
+    --green:#2b9e6b; --green-soft:#e8f7f0;
+    --amber:#e8a13c; --amber-soft:#fdf6e8;
+    --line:#e5eaf0; --bg:#f6f8fb; --card:#ffffff;
+    --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.75;font-size:15px;}
+  .wrap{max-width:960px;margin:0 auto;padding:32px 20px 80px;}
+  .hero{background:linear-gradient(135deg,#1e3a6e 0%,#2f6fed 60%,#5b8ff9 100%);color:#fff;
+    border-radius:18px;padding:44px 40px;margin-bottom:28px;position:relative;overflow:hidden;}
+  .hero::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    border-radius:50%;background:rgba(255,255,255,.08);}
+  .hero::before{content:"";position:absolute;right:60px;bottom:-90px;width:200px;height:200px;
+    border-radius:50%;background:rgba(255,255,255,.06);}
+  .hero .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+    padding:3px 14px;border-radius:999px;font-size:12.5px;letter-spacing:1px;margin-bottom:16px;}
+  .hero h1{font-size:30px;line-height:1.35;margin-bottom:10px;font-weight:700;}
+  .hero p{font-size:14.5px;opacity:.92;max-width:640px;}
+  .hero .meta{margin-top:20px;font-size:12.5px;opacity:.75;display:flex;gap:18px;flex-wrap:wrap;}
+  h2.sec{font-size:21px;margin:42px 0 6px;padding-left:13px;border-left:4px solid var(--brand);line-height:1.4;}
+  .sec-sub{color:var(--ink3);font-size:13px;margin-bottom:18px;padding-left:17px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 26px;margin-bottom:18px;box-shadow:0 1px 3px rgba(31,45,61,.04);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  @media(max-width:720px){.grid2,.grid3{grid-template-columns:1fr;}}
+  .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .kpi .num{font-size:24px;font-weight:700;color:var(--brand);line-height:1.2;}
+  .kpi .num.cn{color:var(--cn);} .kpi .num.green{color:var(--green);}
+  .kpi .lbl{font-size:12.5px;color:var(--ink2);margin-top:4px;}
+  .kpi .src{font-size:11px;color:var(--ink3);margin-top:2px;}
+  .takeaway{background:var(--brand-soft);border:1px solid #cfdefb;border-radius:var(--radius);padding:22px 26px;margin-bottom:18px;}
+  .takeaway h3{font-size:15.5px;color:var(--brand);margin-bottom:10px;}
+  .takeaway li{margin-left:20px;margin-bottom:6px;font-size:14.5px;}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;}
+  th{background:#f0f4fa;color:var(--ink2);font-weight:600;padding:10px 10px;text-align:left;white-space:nowrap;}
+  td{padding:10px;border-top:1px solid var(--line);vertical-align:middle;}
+  tr:hover td{background:#fafcff;}
+  .rank-no{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;
+    background:#eef2f7;color:var(--ink2);font-weight:700;font-size:12.5px;}
+  .rank-no.top1{background:#ffd43b;color:#7a5b00;}
+  .rank-no.top2{background:#dbe4ee;color:#43566b;}
+  .rank-no.top3{background:#ffc9a3;color:#8a4b0f;}
+  .app-name{font-weight:600;font-size:14px;}
+  .app-sub{font-size:11.5px;color:var(--ink3);}
+  .pill{display:inline-block;padding:1px 9px;border-radius:999px;font-size:11.5px;margin:1px 2px 1px 0;
+    background:#f0f4fa;color:var(--ink2);white-space:nowrap;}
+  .pill.game{background:var(--green-soft);color:var(--green);}
+  .pill.hot{background:var(--cn-soft);color:var(--cn);}
+  .score-cell{min-width:130px;}
+  .score-num{font-weight:700;font-size:15px;color:var(--brand);}
+  .bar{height:6px;background:#edf1f6;border-radius:3px;margin-top:5px;overflow:hidden;}
+  .bar>i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#5b8ff9,#2f6fed);}
+  .bar.cn>i{background:linear-gradient(90deg,#ff922b,#e8590c);}
+  .dims{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px;}
+  .dim{font-size:11px;color:var(--ink3);background:#f7f9fc;border:1px solid var(--line);border-radius:8px;padding:2px 8px;}
+  .dim b{color:var(--ink2);}
+  .method{font-size:13px;color:var(--ink2);background:#f8fafd;border:1px dashed #c9d6ea;border-radius:10px;padding:14px 18px;margin-bottom:14px;}
+  .est{color:var(--amber);font-size:11px;border:1px solid #f0dcae;background:var(--amber-soft);border-radius:6px;padding:0 6px;margin-left:4px;white-space:nowrap;}
+  .gcard{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:#fff;}
+  .gcard h4{font-size:15px;margin-bottom:6px;}
+  .gcard .who{font-size:12px;color:var(--brand);margin-bottom:6px;font-weight:600;}
+  .gcard p{font-size:13.5px;color:var(--ink2);}
+  .gcard .watch{margin-top:8px;font-size:12.5px;background:var(--green-soft);color:#1d7a50;border-radius:8px;padding:8px 12px;}
+  .insight{background:linear-gradient(135deg,#0f5132,#2b9e6b);color:#fff;border-radius:var(--radius);padding:26px 30px;}
+  .insight h3{font-size:17px;margin-bottom:12px;}
+  .insight li{margin-left:20px;margin-bottom:8px;font-size:14px;opacity:.95;}
+  .insight b{color:#ffe08a;}
+  .refs{font-size:13px;color:var(--ink2);}
+  .refs li{margin:0 0 8px 22px;}
+  .refs .u{color:var(--ink3);word-break:break-all;}
+  .foot{margin-top:44px;text-align:center;color:var(--ink3);font-size:12px;}
+  .vs-band{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:720px){.vs-band{grid-template-columns:1fr;}}
+  .vs-col{border-radius:var(--radius);padding:20px 22px;border:1px solid var(--line);background:#fff;}
+  .vs-col h4{font-size:15px;margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+  .flag{display:inline-block;width:10px;height:10px;border-radius:3px;}
+  .vs-col li{margin-left:18px;font-size:13.5px;color:var(--ink2);margin-bottom:5px;}
+  .note{font-size:12px;color:var(--ink3);margin-top:10px;}
+  /* Integrated shell: keep the source report content, but use the current report chrome. */
+  :root{--brand:#f97316;--brand-soft:#fff1e8;--ink:#172033;--ink2:#475467;--ink3:#98a2b3;--line:#e4e7ec;--bg:#f3f4f6;--card:#fff;--radius:6px}
+  body{background:var(--bg);font-size:14px;line-height:1.7;color:var(--ink)}
+  .topbar{position:fixed;z-index:20;inset:0 0 auto 0;height:58px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 22px;gap:14px}.brand{font-weight:800;font-size:17px;display:flex;align-items:center;gap:10px}.brand-mark{width:28px;height:28px;border-radius:7px;background:var(--brand);color:#fff;display:grid;place-items:center;font-weight:900}.top-meta{color:var(--ink3);font-size:12px}.print{margin-left:auto;border:1px solid var(--line);background:#fff;border-radius:6px;padding:7px 11px;cursor:pointer}.print:hover{border-color:var(--brand);color:#c2410c}
+  aside{position:fixed;z-index:10;top:58px;bottom:0;left:0;width:236px;padding:24px 14px 30px 20px;background:#fff;border-right:1px solid var(--line);overflow:auto}aside small{display:block;color:var(--ink3);font-weight:700;margin:0 10px 8px;text-transform:uppercase}aside nav a{display:block;color:var(--ink2);padding:8px 10px;border-radius:5px;margin:2px 0;text-decoration:none}aside nav a:hover,aside nav a.active{background:var(--brand-soft);color:#c2410c;font-weight:700}
+  .wrap{max-width:1180px;margin:0 auto 0 236px;padding:86px 34px 70px}.hero{background:#fff;color:var(--ink);border:1px solid var(--line);border-top:5px solid var(--brand);border-radius:6px;padding:34px 38px;margin-bottom:14px}.hero:before,.hero:after{display:none}.hero .tag{background:var(--brand-soft);border:1px solid #fed7aa;color:#c2410c;padding:4px 10px;border-radius:999px;letter-spacing:0}.hero h1{font-size:34px;line-height:1.25;margin:10px 0 12px}.hero p{color:var(--ink2);font-size:15px}.hero .meta{color:var(--ink3);opacity:1;margin-top:15px;font-size:12px}
+  h2.sec{font-size:23px;color:var(--ink);margin:34px 0 8px;padding:0 0 10px;border-left:0;border-bottom:1px solid var(--line);line-height:1.35}h2.sec:before{content:"";display:inline-block;height:22px;width:4px;background:var(--brand);margin-right:9px;vertical-align:-3px;border-radius:2px}.sec-sub{color:var(--ink3);font-size:12px;margin-bottom:16px;padding-left:0}.card,.vs-col,.gcard,.kpi,.takeaway{background:#fff;border:1px solid var(--line);border-radius:6px;padding:20px 22px;box-shadow:none}.grid2{gap:14px}.grid3{gap:12px}.kpi .num{color:#2563eb}.kpi .num.cn{color:#c2410c}.takeaway{background:#fff8f2;border-left:4px solid var(--brand);border-radius:0}.method{background:#f8fafc;border:1px dashed #cbd5e1;border-radius:6px}.insight{border-radius:6px;background:#172033}.refs{font-size:13px}
+  table{font-size:12.5px;min-width:1000px}th{background:#f8fafc;color:var(--ink2);font-size:11px}td{padding:10px 11px}.rank-no{border-radius:5px}.app-name{display:flex;align-items:center;gap:9px;white-space:nowrap}.app-logo{width:30px;height:30px;object-fit:cover;border-radius:8px;flex:none;border:1px solid #eaecf0;background:#fff}.score-cell{min-width:128px}.score-num{font-size:25px;color:#2563eb;line-height:1.1}.bar{height:6px;background:#edf1f6;border-radius:4px;margin-top:12px}.bar>i{background:linear-gradient(90deg,#ff922b,#e8590c)}.dims{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}.dim{font-size:10.5px;color:var(--ink3);background:#f7f9fc;border:1px solid var(--line);border-radius:5px;padding:1px 6px}.dim b{color:var(--ink2)}.rank-country-hidden{display:none!important}.rank-tabs{display:flex;gap:4px;background:#eef0f3;padding:4px;border-radius:7px;width:max-content;margin:-2px 0 14px}.rank-tab,.game-filter{border:0;background:transparent;border-radius:5px;padding:7px 16px;cursor:pointer;color:var(--ink3)}.rank-tab.active,.game-filter.active{background:#fff;color:var(--ink);font-weight:800;box-shadow:0 1px 3px #0002}.game-filters{display:flex;gap:7px;flex-wrap:wrap;margin:0 0 14px}.game-filter{border:1px solid var(--line);border-radius:999px;background:#fff;padding:5px 11px}.game-filter.active{background:var(--ink);color:#fff;box-shadow:none}.gcard[hidden]{display:none}
+  @media(max-width:900px){aside{display:none}.wrap{margin:0;padding:74px 14px 45px}.top-meta{display:none}.hero{padding:25px 20px}.hero h1{font-size:27px}.grid2,.grid3,.vs-band{grid-template-columns:1fr}.model-grid{grid-template-columns:1fr 1fr}.table-shell{overflow:auto}}
+  @media print{@page{size:A4;margin:13mm}.topbar,aside,.rank-tabs,.game-filters,.print{display:none!important}.wrap{margin:0;padding:0}.hero{padding:20px}.rank-country-hidden{display:block!important}table{font-size:8px;min-width:0}.score-num{font-size:17px}.bar{margin-top:5px;height:4px}.dims{display:flex!important}}
+  .formula{background:var(--ink);color:#fff;border-radius:6px;padding:16px 20px;font-size:16px;font-weight:800;text-align:center;margin:14px 0}.model-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.model{background:#fff;border:1px solid var(--line);border-top:3px solid var(--brand);padding:14px 15px;border-radius:6px;min-height:112px}.model h4{font-size:14px;margin-bottom:6px}.model p{font-size:12.5px;color:var(--ink2);line-height:1.55}.loop{margin-top:14px;background:#172033;color:#fff;padding:17px 18px;border-radius:6px;font-weight:700;text-align:center;line-height:2}.arrow{color:#fdba74;padding:0 5px}.method-rule{background:#fff8f2;border-left:4px solid var(--brand);padding:12px 15px;margin-top:12px;color:var(--ink2);font-size:12.5px;border-radius:0 6px 6px 0}
+  .focus-row td{background:#fffafb;border-top:3px solid #ff4d57!important;border-bottom:3px solid #ff4d57!important}.focus-row td:first-child{border-left:3px solid #ff4d57;border-radius:5px 0 0 5px}.focus-row td:last-child{border-right:3px solid #ff4d57;border-radius:0 5px 5px 0}.focus-row:hover td{background:#fff5f6}
+</style>
+</head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">豆</span> 豆小宝研究院</div><span class="top-meta">学习类 APP 市场调研 · 2026</span><button class="print" onclick="window.print()">打印 / PDF</button></header>
+<aside><small>报告目录</small><nav id="report-nav"></nav></aside>
+<div class="wrap">
+
+<!-- ============ HERO ============ -->
+<div class="hero">
+  <span class="tag">市场调研报告 · MARKET RESEARCH</span>
+  <h1>学习类 APP 市场全景调研<br>中国 × 美国双市场 · 游戏化专项分析</h1>
+  <p>为 AI 儿童手表「豆小包」游戏化内容设计提供市场底座：覆盖中美学习类 APP 排名、用户量、功能卖点、游戏化方向与盈利情况，含双市场综合排行榜与落地启示。</p>
+  <div class="meta">
+    <span>📅 报告日期：2026-08-03</span>
+    <span>📊 数据窗口：2025-08-02 ～ 2026-08-02（仅采用窗口内发布的数据）</span>
+    <span>🔍 数据来源：QuestMobile / 极光月狐 / 财报 / Sensor Tower / 魔镜洞察等</span>
+  </div>
+</div>
+
+<!-- ============ 方法论 ============ -->
+<h2 class="sec">一、调研方法与评分模型</h2>
+<p class="sec-sub">排行榜不是拍脑袋，是加权评估</p>
+<div class="formula">综合评分 = 用户规模 30% + 增长势头 30% + 商业化/盈利 25% + 游戏化深度 15%</div>
+<div class="model-grid">
+  <div class="model"><h4>用户规模 · 30%</h4><p>MAU、DAU、注册用户与下载量，优先采用同一统计口径的最新值。</p></div>
+  <div class="model"><h4>增长势头 · 30%</h4><p>同比/环比增速、下载趋势、留存与渠道扩张，窗口外数据不计增长优势。</p></div>
+  <div class="model"><h4>商业化 · 25%</h4><p>营收、付费订阅、ARPU、盈利能力及订阅、广告、硬件等变现组合。</p></div>
+  <div class="model"><h4>游戏化 · 15%</h4><p>连胜、任务、XP/积分、养成、排行、社交与即时反馈的深度和学习耦合度。</p></div>
+</div>
+<div class="method-rule"><b>数据规则：</b>严格优先采用 2025-08-02 ～ 2026-08-02 发布的数据；窗口外最近值明确标注“历史/外推/估算”，不计入增长优势。证据等级：官方财报/监管披露 ＞ QuestMobile、极光月狐、Sensor Tower 等第三方监测 ＞ 媒体转引 ＞ 历史外推。</div>
+
+<!-- ============ 市场全景 ============ -->
+<h2 class="sec">二、市场全景</h2>
+<p class="sec-sub">中国：头部 AI 化集中 ｜ 美国：订阅经济成熟 + 出海产品盘整</p>
+
+<div class="grid3" style="margin-bottom:16px;">
+  <div class="kpi"><div class="num cn">1.24 亿</div><div class="lbl">作业帮 MAU（2026.5，国内教育类第一）</div><div class="src">极光月狐 In-App AI 应用榜，2026.6 发布</div></div>
+  <div class="kpi"><div class="num">$10.38 亿</div><div class="lbl">Duolingo FY2025 营收（+39% YoY）</div><div class="src">Duolingo Q4/FY2025 财报，2026.2</div></div>
+  <div class="kpi"><div class="num green">52.5 亿元</div><div class="lbl">中国儿童智能手表电商销售额（2025.1–11）</div><div class="src">魔镜洞察，2025.12；中国电商渠道口径，非全球市场规模</div></div>
+</div>
+
+<div class="vs-band">
+  <div class="vs-col">
+    <h4><span class="flag" style="background:var(--cn)"></span>🇨🇳 中国市场格局</h4>
+    <ul>
+      <li><b>头部集中</b>：作业帮 1.24 亿 MAU 断层第一，快对 AI 8,438 万第二，学习通 3,032 万、小猿 AI 2,568 万紧随（2026.5，极光月狐）。在极光月狐《AI 应用 5 月榜单》的 AI 应用 Top 10 中，教育类产品占 5 席，显示教育是 AI 应用落地较成熟的赛道之一（出处：Reference [1]，2026-06-25）。</li>
+      <li><b>教育大厂吃留存，互联网大厂吃拉新</b>：豆包爱学 2026.5 环比仍增 15.8%，靠字节流量持续渗透；作业帮、猿辅导靠存量用户 AI 化升级守住基本盘。</li>
+      <li><b>商业化</b>：会员订阅（约 30 元/月）为主；网易有道 FY2025 营收 8.22 亿美元（约 59 亿元），有道词典连续七年获 QuestMobile 学习工具赛道用户规模 No.1，AI 同传用户破 2,000 万。</li>
+      <li><b>儿童启蒙细分</b>：洪恩 FY2025 营收 8.07 亿元、平均 MAU 2,498 万、净利 9,540 万元，是儿童游戏化学习的盈利样本，并向 AI 硬件（AI Pal 毛绒玩伴、双语早教机）延伸。</li>
+      <li><b>政策面</b>：教育部 2025 年发布《中小学人工智能通识教育指南》与首部《中国智慧教育白皮书》，AI 教育进校提速。</li>
+    </ul>
+  </div>
+  <div class="vs-col">
+    <h4><span class="flag" style="background:var(--us)"></span>🇺🇸 美国市场格局</h4>
+    <ul>
+      <li><b>Duolingo 断层第一</b>：FY2025 营收 10.38 亿美元（+39%）、预订额 11.58 亿美元（+33%）；2025 年全球下载量 1.78 亿次（教育类第一）；2026 年主动牺牲约 5,000 万美元预订额换免费体验与口碑增长，目标中期 1 亿 DAU。</li>
+      <li><b>拍照解题进入盘整期</b>：Gauth APP 端月活约 2,600 万（2025.12），环比下滑；Q4 2025 下载量环比 +218%（Sensor Tower）；Photomath 紧随，小猿搜题、Brainly、Quizlet 均有千万级月活（2026.4，Sensor Tower）。</li>
+      <li><b>学校场景护城河</b>：Google Classroom、Kahoot!、ClassDojo 依托校园渠道；Khan Academy 注册学员 2.27 亿，AI 家教 Khanmigo 一年增长 731% 至 200 万人。</li>
+      <li><b>付费环境成熟但转化变难</b>：Gauth 被分析指「免费用户太多、付费转化太难」；对照之下，语言学习 Learna AI 以 700 万月活做到月入近 1,300 万美元，垂直场景付费更优。</li>
+      <li><b>争议并存</b>：AI 直接给答案引发教育界对「削弱独立思考」的担忧，部分教师已降低家庭作业考核占比。</li>
+    </ul>
+  </div>
+</div>
+<p class="note">注：以上数据均有引用来源，详见文末 Reference List；不同机构口径（MAU 定义、是否含网页端）存在差异，跨源对比时已尽量取同一时点。</p>
+
+<!-- ============ 中国排行榜 ============ -->
+<h2 class="sec">三、排行榜 ①：中国学习类 APP TOP 10</h2>
+<p class="sec-sub">综合评分 = 用户规模×30% + 增长×30% + 商业化×25% + 游戏化×15%（数据窗口 2025-08-02 ～ 2026-08-02）</p>
+<div class="card" style="overflow-x:auto;">
+<table>
+  <thead><tr>
+    <th>#</th><th>产品 / 公司</th><th>用户量（最新）</th><th>功能卖点</th><th>游戏化方向</th><th>盈利情况</th><th>综合评分</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td><span class="rank-no top1">1</span></td>
+    <td><div class="app-name">作业帮</div><div class="app-sub">作业帮科技</div></td>
+    <td>MAU 1.24 亿<span class="app-sub">（2026.5，极光月狐）</span></td>
+    <td><span class="pill">拍照搜题</span><span class="pill">AI 家教</span><span class="pill">直播课</span></td>
+    <td><span class="pill game">闯关练习</span><span class="pill game">学习积分</span></td>
+    <td>会员订阅+课程，产品矩阵（大学搜题酱、Question.AI、PolyBuzz 出海）</td>
+    <td class="score-cell"><span class="score-num">8.1</span><div class="bar cn"><i style="width:81%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>10</b></span><span class="dim">增长 <b>7.5</b></span><span class="dim">商业 <b>8</b></span><span class="dim">游戏 <b>5.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no top2">2</span></td>
+    <td><div class="app-name">网易有道（有道词典等）</div><div class="app-sub">网易有道 NYSE:DAO</div></td>
+    <td>学习工具赛道用户规模 No.1<span class="app-sub">（QuestMobile 2025 年度，连续七年）</span></td>
+    <td><span class="pill">AI 同传（用户破 2,000 万）</span><span class="pill">词典笔硬件</span></td>
+    <td><span class="pill game">单词闯关</span><span class="pill game">打卡</span></td>
+    <td>FY2025 营收 8.22 亿美元（≈59 亿元），净利 1,493 万美元</td>
+    <td class="score-cell"><span class="score-num">7.5</span><div class="bar cn"><i style="width:75%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>8.5</b></span><span class="dim">增长 <b>7</b></span><span class="dim">商业 <b>8.5</b></span><span class="dim">游戏 <b>5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no top3">3</span></td>
+    <td><div class="app-name">小猿搜题</div><div class="app-sub">猿辅导</div></td>
+    <td>MAU 3,000 万+<span class="app-sub">（2025.9，环比 +16%）</span></td>
+    <td><span class="pill">拍照搜题</span><span class="pill">AI 讲解</span></td>
+    <td><span class="pill game">答题 PK</span><span class="pill game">成就体系</span></td>
+    <td>会员订阅（约 30 元/月），出海 Checkmath/Uknow.AI</td>
+    <td class="score-cell"><span class="score-num">7.5</span><div class="bar cn"><i style="width:75%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>7.5</b></span><span class="dim">增长 <b>9</b></span><span class="dim">商业 <b>6.5</b></span><span class="dim">游戏 <b>6</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">4</span></td>
+    <td><div class="app-name">小猿 AI（原小猿口算）</div><div class="app-sub">猿辅导</div></td>
+    <td>MAU 2,568 万<span class="app-sub">（2026.5，极光月狐）</span></td>
+    <td><span class="pill">口算批改</span><span class="pill">1v1 口算 PK</span></td>
+    <td><span class="pill game">实时对战</span><span class="pill game">段位排行</span><span class="pill game">连胜</span></td>
+    <td>会员订阅；更名「小猿 AI」后月活稳居教育 AI 前五</td>
+    <td class="score-cell"><span class="score-num">7.1</span><div class="bar cn"><i style="width:71%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>7</b></span><span class="dim">增长 <b>8</b></span><span class="dim">商业 <b>6</b></span><span class="dim">游戏 <b>7</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">5</span></td>
+    <td><div class="app-name">快对 AI</div><div class="app-sub">快对作业</div></td>
+    <td>MAU 8,438 万<span class="app-sub">（2026.5，极光月狐）</span></td>
+    <td><span class="pill">作业检查</span><span class="pill">快对 AI 解题</span></td>
+    <td><span class="pill game">学习打卡</span><span class="pill game">积分</span></td>
+    <td>会员订阅；AI 化升级后体量跃居教育类第二</td>
+    <td class="score-cell"><span class="score-num">6.6</span><div class="bar cn"><i style="width:66%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>8</b></span><span class="dim">增长 <b>7</b></span><span class="dim">商业 <b>5.5</b></span><span class="dim">游戏 <b>5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">6</span></td>
+    <td><div class="app-name">洪恩（识字/数学/ABC）</div><div class="app-sub">iHuman NYSE:IH</div></td>
+    <td>公司合计 MAU 2,498 万<span class="app-sub">（FY2025 全年平均）</span></td>
+    <td><span class="pill">3D 互动课件</span><span class="pill">AI/AR</span><span class="pill">AI 毛绒玩伴</span></td>
+    <td><span class="pill game">闯关地图</span><span class="pill game">喂养养成</span><span class="pill game">收集解锁</span></td>
+    <td>FY2025 营收 8.07 亿元，净利 9,540 万元，连续三年派发特别股息</td>
+    <td class="score-cell"><span class="score-num">6.5</span><div class="bar cn"><i style="width:65%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>6.5</b></span><span class="dim">增长 <b>4.5</b></span><span class="dim">商业 <b>7.5</b></span><span class="dim">游戏 <b>9</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">7</span></td>
+    <td><div class="app-name">多邻国（中国）</div><div class="app-sub">Duolingo NASDAQ:DUOL</div></td>
+    <td>中国免费榜教育类第 6<span class="app-sub">（2025.10 App Store）</span><span class="est">MAU 未单独披露</span></td>
+    <td><span class="pill">AI 视频通话</span><span class="pill">多儿 IP</span><span class="pill">瑞幸/伊利联名</span></td>
+    <td><span class="pill game">连胜 Streak</span><span class="pill game">XP 排行</span><span class="pill game">人格化提醒</span></td>
+    <td>全球 FY2025 营收 10.38 亿美元；中国为增长最快市场之一</td>
+    <td class="score-cell"><span class="score-num">6.5</span><div class="bar cn"><i style="width:65%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>3.5</b></span><span class="dim">增长 <b>8</b></span><span class="dim">商业 <b>6.5</b></span><span class="dim">游戏 <b>9.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">8</span></td>
+    <td><div class="app-name">豆包爱学</div><div class="app-sub">字节跳动</div></td>
+    <td>MAU 环比 +15.8%<span class="app-sub">（2026.5，极光月狐）</span><span class="est">MAU 绝对值未披露</span></td>
+    <td><span class="pill">免费 AI 家教</span><span class="pill">引导式讲题</span></td>
+    <td><span class="pill game">学习计划</span><span class="pill game">激励反馈</span></td>
+    <td>免费为主（生态引流），尚未直接变现</td>
+    <td class="score-cell"><span class="score-num">5.9</span><div class="bar cn"><i style="width:59%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>4.5</b></span><span class="dim">增长 <b>10</b></span><span class="dim">商业 <b>3.5</b></span><span class="dim">游戏 <b>4.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">9</span></td>
+    <td><div class="app-name">学习通</div><div class="app-sub">超星</div></td>
+    <td>MAU 3,032 万<span class="app-sub">（2026.5，极光月狐）</span></td>
+    <td><span class="pill">高校课程</span><span class="pill">图书馆资源</span></td>
+    <td><span class="pill game">任务点</span><span class="pill game">签到</span></td>
+    <td>B 端院校采购为主</td>
+    <td class="score-cell"><span class="score-num">5.7</span><div class="bar cn"><i style="width:57%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>6.5</b></span><span class="dim">增长 <b>6</b></span><span class="dim">商业 <b>5.5</b></span><span class="dim">游戏 <b>3.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">10</span></td>
+    <td><div class="app-name">百词斩</div><div class="app-sub">成都超有爱</div></td>
+    <td>MAU 922 万<span class="est">窗口外最近值（2025.5）</span></td>
+    <td><span class="pill">图背单词</span><span class="pill">爱阅读</span></td>
+    <td><span class="pill game">单词 PK</span><span class="pill game">打卡日历</span><span class="pill game">斩词成就</span></td>
+    <td>会员+周边电商（文具文创变现较成熟）</td>
+    <td class="score-cell"><span class="score-num">5.0</span><div class="bar cn"><i style="width:50%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>4.5</b></span><span class="dim">增长 <b>3.5</b></span><span class="dim">商业 <b>6</b></span><span class="dim">游戏 <b>7</b></span></div></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<p class="note">落榜但值得关注：洋葱学园（1,792 万 MAU，2026.5，AI 榜增速 +5.9%）、斑马 AI 学、腾讯课堂、一起作业、宝宝巴士（学龄前内容巨头，未披露统一 MAU）、叫叫阅读、粉笔（职教）。</p>
+
+<!-- ============ 美国排行榜 ============ -->
+<h2 class="sec">四、排行榜 ②：美国学习类 APP TOP 10</h2>
+<p class="sec-sub">同一评分模型与数据窗口；美国市场含本土产品及在美运营的中国出海产品</p>
+<div class="card" style="overflow-x:auto;">
+<table>
+  <thead><tr>
+    <th>#</th><th>产品 / 公司</th><th>用户量（最新）</th><th>功能卖点</th><th>游戏化方向</th><th>盈利情况</th><th>综合评分</th>
+  </tr></thead>
+  <tbody>
+  <tr>
+    <td><span class="rank-no top1">1</span></td>
+    <td><div class="app-name">Duolingo</div><div class="app-sub">NASDAQ:DUOL</div></td>
+    <td>DAU 5,270 万（+30%）/ MAU 1.353 亿<span class="app-sub">（2025 Q4 / Q3）</span></td>
+    <td><span class="pill">语言学习</span><span class="pill">Max AI 视频通话</span><span class="pill">棋类/数学/音乐新课</span></td>
+    <td><span class="pill game">连胜 Streak</span><span class="pill game">XP+联盟排行</span><span class="pill game">宝石经济</span><span class="pill game">IP 人格化</span></td>
+    <td>FY2025 营收 10.38 亿美元（+39%），付费订阅 1,220 万（+28%），4 亿美元回购计划</td>
+    <td class="score-cell"><span class="score-num">9.6</span><div class="bar"><i style="width:96%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>10</b></span><span class="dim">增长 <b>8.5</b></span><span class="dim">商业 <b>10</b></span><span class="dim">游戏 <b>10</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no top2">2</span></td>
+    <td><div class="app-name">Quizlet</div><div class="app-sub">Quizlet Inc.</div></td>
+    <td>千万级月活<span class="app-sub">（2026.4，Sensor Tower）</span><span class="est">MAU 约 5,000–6,000 万（历史外推）</span></td>
+    <td><span class="pill">记忆卡片</span><span class="pill">Q-Chat AI</span><span class="pill">测试模式</span></td>
+    <td><span class="pill game">Match 竞速</span><span class="pill game">Quizlet Live 团队赛</span></td>
+    <td>Quizlet Plus 订阅（去广告+AI 功能）</td>
+    <td class="score-cell"><span class="score-num">6.3</span><div class="bar"><i style="width:63%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>6.5</b></span><span class="dim">增长 <b>5</b></span><span class="dim">商业 <b>7</b></span><span class="dim">游戏 <b>7</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no top3">3</span></td>
+    <td><div class="app-name">Kahoot!</div><div class="app-sub">挪威（2023 年私有化）</div></td>
+    <td>全球课堂覆盖广<span class="est">MAU 未披露，参与者数千万级</span></td>
+    <td><span class="pill">课堂抢答</span><span class="pill">教师 UGC 题库</span></td>
+    <td><span class="pill game">实时竞答</span><span class="pill game">排行榜</span><span class="pill game">团队模式</span></td>
+    <td>订阅制（教师/家庭/企业），私有化前年收入约 2 亿美元级<span class="est">估算</span></td>
+    <td class="score-cell"><span class="score-num">6.2</span><div class="bar"><i style="width:62%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>5.5</b></span><span class="dim">增长 <b>5</b></span><span class="dim">商业 <b>6</b></span><span class="dim">游戏 <b>10</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">4</span></td>
+    <td><div class="app-name">Khan Academy（含 Khanmigo）</div><div class="app-sub">非营利组织</div></td>
+    <td>注册学员 2.27 亿 / MAU ≈3,500 万<span class="est">估算（skillademia 2026）</span></td>
+    <td><span class="pill">免费全科课程</span><span class="pill">AI 家教 Khanmigo</span><span class="pill">SAT 备考</span></td>
+    <td><span class="pill game">能量点数</span><span class="pill game">徽章</span><span class="pill game">精通进度条</span></td>
+    <td>非营利：捐赠 65% + 学区合作 19% + Khanmigo 订阅 16%；Khanmigo 用户一年 +731% 至 200 万</td>
+    <td class="score-cell"><span class="score-num">6.1</span><div class="bar"><i style="width:61%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>8</b></span><span class="dim">增长 <b>6</b></span><span class="dim">商业 <b>4</b></span><span class="dim">游戏 <b>6</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">5</span></td>
+    <td><div class="app-name">Gauth</div><div class="app-sub">字节跳动（出海）</div></td>
+    <td>APP 端 MAU ≈2,600 万<span class="app-sub">（2025.12，AICPB）</span></td>
+    <td><span class="pill">AI 拍题全学科</span><span class="pill">真人导师增值</span><span class="pill">G 端合作</span></td>
+    <td><span class="pill game">任务奖励</span><span class="pill game">邀请裂变</span></td>
+    <td>2025 Q3 营收约 100 万美元（90% 来自美国）；2026 签下马来西亚教育部 200 万学生合作</td>
+    <td class="score-cell"><span class="score-num">6.0</span><div class="bar"><i style="width:60%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>6.5</b></span><span class="dim">增长 <b>6</b></span><span class="dim">商业 <b>7</b></span><span class="dim">游戏 <b>3</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">6</span></td>
+    <td><div class="app-name">Prodigy Math</div><div class="app-sub">Prodigy Education</div></td>
+    <td><span class="est">注册用户约 1 亿（历史披露），MAU 未披露</span></td>
+    <td><span class="pill">RPG 数学游戏</span><span class="pill">课标对齐</span></td>
+    <td><span class="pill game">宠物对战</span><span class="pill game">装备收集</span><span class="pill game">剧情任务</span></td>
+    <td>Premium 会员（外观/宠物加成），北美小学生渗透率高</td>
+    <td class="score-cell"><span class="score-num">5.5</span><div class="bar"><i style="width:55%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>4.5</b></span><span class="dim">增长 <b>4</b></span><span class="dim">商业 <b>6</b></span><span class="dim">游戏 <b>9.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">7</span></td>
+    <td><div class="app-name">Question.AI</div><div class="app-sub">作业帮（出海）</div></td>
+    <td>美国教育免费榜第 6<span class="app-sub">（2025.10）</span></td>
+    <td><span class="pill">AI 拍题</span><span class="pill">Chatbot 交互</span></td>
+    <td><span class="pill game">轻量任务</span></td>
+    <td>季度下载约 25 万 / 营收约 40 万美元（2025 Q3）</td>
+    <td class="score-cell"><span class="score-num">5.1</span><div class="bar"><i style="width:51%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>4</b></span><span class="dim">增长 <b>8</b></span><span class="dim">商业 <b>4.5</b></span><span class="dim">游戏 <b>2.5</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">8</span></td>
+    <td><div class="app-name">ClassDojo</div><div class="app-sub">ClassDojo Inc.</div></td>
+    <td><span class="est">累计覆盖 5,000 万+ 学生（历史披露）</span></td>
+    <td><span class="pill">家校沟通</span><span class="pill">课堂行为管理</span></td>
+    <td><span class="pill game">行为积分</span><span class="pill game">小怪兽形象养成</span><span class="pill game">技能勋章</span></td>
+    <td>免费+家庭订阅增值</td>
+    <td class="score-cell"><span class="score-num">5.0</span><div class="bar"><i style="width:50%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>5</b></span><span class="dim">增长 <b>4</b></span><span class="dim">商业 <b>4.5</b></span><span class="dim">游戏 <b>8</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">9</span></td>
+    <td><div class="app-name">Photomath</div><div class="app-sub">Google（2022 收购）</div></td>
+    <td>千万级月活<span class="app-sub">（2026.4，Sensor Tower）</span></td>
+    <td><span class="pill">拍照解数学</span><span class="pill">分步讲解</span></td>
+    <td><span class="pill game">极简工具向</span></td>
+    <td>Photomath Plus 订阅，季度营收约 110 万美元（2025 Q3）</td>
+    <td class="score-cell"><span class="score-num">4.6</span><div class="bar"><i style="width:46%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>6</b></span><span class="dim">增长 <b>3</b></span><span class="dim">商业 <b>6.5</b></span><span class="dim">游戏 <b>2</b></span></div></td>
+  </tr>
+  <tr>
+    <td><span class="rank-no">10</span></td>
+    <td><div class="app-name">Google Classroom</div><div class="app-sub">Google</div></td>
+    <td>2025 下载量 3,000 万<span class="est">用户 1.5 亿级（历史披露）</span></td>
+    <td><span class="pill">作业分发</span><span class="pill">校园生态</span></td>
+    <td><span class="pill game">—（工具型）</span></td>
+    <td>免费（Workspace for Education 生态入口）</td>
+    <td class="score-cell"><span class="score-num">4.4</span><div class="bar"><i style="width:44%"></i></div>
+      <div class="dims"><span class="dim">规模 <b>8</b></span><span class="dim">增长 <b>4</b></span><span class="dim">商业 <b>2</b></span><span class="dim">游戏 <b>2</b></span></div></td>
+  </tr>
+  </tbody>
+</table>
+</div>
+<p class="note">落榜但值得关注：Brainly（答疑社区，千万级月活）、QANDA（韩国 Mathpresso，主攻日韩东南亚）、busuu（Chegg 旗下）、HelloTalk（中国出海语言社交）、ABCmouse / Khan Academy Kids / Lingokids（儿童订阅向）、Learna AI（700 万月活、月入近 1,300 万美元，语言学习变现黑马，2026.4 Sensor Tower）、Seekho（印度）。</p>
+
+<!-- ============ 游戏化方向 ============ -->
+<h2 class="sec">五、游戏化方向专题拆解</h2>
+<p class="sec-sub">与豆小包 MIP 的 XP/CP 体系同一套逻辑，可直接互相印证</p>
+<div class="grid2">
+  <div class="gcard">
+    <h4>🔥 连胜打卡（Streak）</h4>
+    <div class="who">代表：Duolingo、百词斩、扇贝</div>
+    <p>连续学习天数可视化 + 桌面组件 + 拟人化催打卡推送。Duolingo 用户为保住连胜自发每日打开，是其 DAU 突破 5,270 万的核心机制。</p>
+    <div class="watch">⌚ 手表适配：连胜天然适配「每日轻量任务」，表盘组件即可展示 CP 连胜数，无需打开 App。</div>
+  </div>
+  <div class="gcard">
+    <h4>🏆 XP / 排行榜 / 联盟段位</h4>
+    <div class="who">代表：Duolingo 联盟、小猿口算 PK 段位、百词斩单词 PK</div>
+    <p>XP 累积 + 周榜升降级制造轻度竞争。小猿口算把「口算 1v1 实时对战 + 段位」做成核心玩法，MAU 环比 +16%（2025.9）。</p>
+    <div class="watch">⌚ 手表适配：XP→豆小包 CP 直接对应；排行榜建议限定「好友圈/班级圈」，避免全服攀比。</div>
+  </div>
+  <div class="gcard">
+    <h4>🐣 养成 / 收集 / 装扮</h4>
+    <div class="who">代表：洪恩识字「动物乐园」、Prodigy 宠物对战、ClassDojo 小怪兽</div>
+    <p>洪恩把汉字复习嵌入喂食、清洁等高频互动，形成「新知解锁 + 旧知复习」闭环；Prodigy 用宠物+装备把数学练习包装成 RPG，北美小学生渗透率极高。</p>
+    <div class="watch">⌚ 手表适配：养成是腕上最佳形态——电子宠物/伙伴靠 CP「喂养」，学习行为直接转化为养成资源。</div>
+  </div>
+  <div class="gcard">
+    <h4>⚡ 即时反馈与微课闯关</h4>
+    <div class="who">代表：Duolingo 课程树、洪恩 3D 互动课件、Khan 精通进度条</div>
+    <p>3–5 分钟一节课、即时对错反馈、进度可视化。Khan Academy 验证：每周 30 分钟+，掌握速度提升 1.8 倍（斯坦福研究）。</p>
+    <div class="watch">⌚ 手表适配：小屏只能做 1–3 分钟的超短任务（听写、口算、单词闪卡），与「碎片时间」完美匹配。</div>
+  </div>
+  <div class="gcard">
+    <h4>🦉 IP 人格化与情绪价值</h4>
+    <div class="who">代表：Duolingo 多儿、洪恩宇宙护卫队、iHuman AI Pal 毛绒玩伴</div>
+    <p>多儿「去世」营销事件零成本获 17 亿自然流量；IP 联名（瑞幸、伊利）成为第二增长曲线。Duolingo 2026 年还将上线 avatar 装扮售卖——IP 从符号变成「学习搭子」是留存利器。</p>
+    <div class="watch">⌚ 手表适配：豆小包本身即是 IP！AI 伙伴人设 + 语音互动是手表相对手机 App 的独占优势。</div>
+  </div>
+  <div class="gcard">
+    <h4>⚠️ 社交激励的反面教材</h4>
+    <div class="who">案例：小天才「主页圈」</div>
+    <p>点赞数、积分皮肤、账号等级构成了强粘性，但也催生刷赞灰产、账号买卖、攀比换机，2025 年多次被媒体报道并引发家长反感；小天才 2025 Q3 销量同比 -14.2%，而主打防沉迷管控的华为份额同比 +3.9%。</p>
+    <div class="watch">⌚ 手表警示：纯社交攀比 = 舆论与监管雷区。激励必须锚定「学习行为」而非「人气数值」，且需家长可见可控。</div>
+  </div>
+</div>
+
+<!-- ============ 盈利模式 ============ -->
+<h2 class="sec">六、盈利模式对比</h2>
+<p class="sec-sub">谁在为学习买单，怎么买</p>
+<div class="card" style="overflow-x:auto;">
+<table>
+  <thead><tr><th>模式</th><th>代表产品</th><th>定价区间</th><th>特点</th></tr></thead>
+  <tbody>
+    <tr class="focus-row"><td><b>订阅会员（主流）</b></td><td>Duolingo Super/Max、小猿、作业帮、洪恩、Quizlet Plus、Prodigy Premium</td><td>中国 ≈30 元/月；美国 $7.99–$29.99/月</td><td>免费功能引流→高级内容/AI 功能付费；Duolingo 付费订阅 1,220 万，FY2025 营收 +39%</td></tr>
+    <tr><td><b>课程/直播课</b></td><td>作业帮、猿辅导、高途</td><td>数百–数千元/期</td><td>高客单价，续班率为核心指标；2025 年头部机构营收恢复性增长</td></tr>
+    <tr class="focus-row"><td><b>硬件+内容</b></td><td>有道词典笔、学而思学习机、洪恩早教机、小天才手表</td><td>500–5,000 元</td><td>硬件一次性收入 + 内容订阅续费；中国电商渠道儿童手表 2025.1–11 销售额 52.5 亿元，已超 2024 全年</td></tr>
+    <tr><td><b>免费+生态引流</b></td><td>豆包爱学、夸克学习、Google Classroom</td><td>免费</td><td>不直接变现，为广告/云/生态导流</td></tr>
+    <tr><td><b>IP 衍生/联名</b></td><td>Duolingo（瑞幸、伊利、avatar 装扮）、洪恩动画 IP</td><td>—</td><td>多儿毛绒公仔、联名饮品；Duolingo 2026 年新增 avatar 装扮售卖</td></tr>
+    <tr class="focus-row"><td><b>G 端/校端合作</b></td><td>Gauth（马来西亚教育部 200 万学生）、Khan 学区项目、学习通院校采购</td><td>按协议/年</td><td>出海产品 C 端付费难后的第二曲线；校端渠道粘性强、壁垒高</td></tr>
+    <tr><td><b>非营利/捐赠</b></td><td>Khan Academy</td><td>核心免费 + Khanmigo $4/月</td><td>捐赠 65% + 学区合作 19% + 订阅 16%</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- ============ 对豆小包的启示 ============ -->
+<h2 class="sec">七、对「豆小包」的落地启示</h2>
+<p class="sec-sub">把市场验证过的机制，装进手表的小屏幕</p>
+<div class="insight">
+  <h3>🎯 五条可执行建议（按优先级排序）</h3>
+  <ul>
+    <li><b>P0 · 用 CP 连胜锚定每日打开</b>：借鉴 Duolingo Streak（支撑其 5,270 万 DAU 的核心引擎），把豆小包 CP 与「每日 3 分钟学习微任务」（口算 10 题 / 单词 5 个 / 古诗 1 首）绑定，表盘直接展示连胜天数。</li>
+    <li><b>P0 · 养成闭环做差异化</b>：洪恩「动物乐园」验证了「学习→喂养→解锁」闭环在儿童端的有效性。建议豆小包 AI 伙伴本身即可被 CP「喂养成长」，学习行为是唯一的养成资源来源——激励锚定学习，不锚定人气。</li>
+    <li><b>P1 · 竞技限定在小圈子</b>：小猿口算 1v1 PK（MAU +16%）证明实时对战有效，但小天才的教训（销量 -14.2%）说明全服排行榜是雷区。建议只做「好友圈/班级圈」周榜 + 家长可见。</li>
+    <li><b>P1 · AI 语音互动是手表独占场景</b>：Duolingo 把 Video Call 下放到 Super  tier、上量「口语冒险」免费课，iHuman 推 AI Pal 毛绒玩伴——拟人陪伴是行业共识方向。手表的麦克风+喇叭是天然入口，英语对话、诗词接龙、十万个为什么是最优首发内容。</li>
+    <li><b>P2 · 商业化建议「内容订阅 + IP」双轨</b>：参考洪恩（订阅，年营收 8 亿）与 Duolingo（订阅+IP 联名+avatar 装扮），避免广告变现伤害儿童体验与家长信任。</li>
+  </ul>
+</div>
+<div class="card" style="margin-top:16px;">
+  <b>⚠️ 三条避坑指南</b>
+  <ul style="margin:8px 0 0 20px;font-size:14px;color:var(--ink2);">
+    <li><b>防沉迷与家长管控是入场券</b>：华为儿童手表靠「防沉迷守护」份额同比 +3.9%（2025 Q3）——家长是付费者，管控功能必须是卖点而非补丁。</li>
+    <li><b>杜绝人气数值化</b>：不做点赞数、不做全服人气榜、不做账号等级交易空间（小天才灰产教训）。</li>
+    <li><b>内容合规</b>：面向儿童的 AI 生成内容需过滤与审核机制；参考 Khanmigo「不直接给答案，引导思考」的设计，规避「AI 代写作业」争议。</li>
+  </ul>
+</div>
+
+<div class="loop">腕上微任务 <span class="arrow">→</span> AI 伙伴分层提示 <span class="arrow">→</span> 获得 CP / 能力星 <span class="arrow">→</span> 伙伴成长与故事解锁 <span class="arrow">→</span> 家长看到真实掌握度 <span class="arrow">→</span> 间隔复习</div>
+
+<!-- ============ Reference List ============ -->
+<h2 class="sec">八、Reference List</h2>
+<p class="sec-sub">数据窗口：2025-08-02 ～ 2026-08-02；标注「转引」的为媒体转述的机构数据；窗口外数据仅个别保留并明确标注</p>
+<div class="card">
+<ol class="refs">
+  <li>极光月狐《AI 应用 5 月榜单》（2026 年 5 月数据，新浪财经转引，2026-06-25）：AI 应用 Top 10 中教育类占 5 席；作业帮 MAU 1.24 亿、快对 AI 8,438 万、学习通 3,032 万、小猿 AI 2,568 万、洋葱学园 1,792 万；豆包爱学环比 +15.8%。<span class="u">finance.sina.com.cn/roll/2026-06-25/doc-inierayy2512004.shtml</span></li>
+  <li>Duolingo, Inc. Q4/FY 2025 Shareholder Letter & Press Release（SEC EDGAR，2026-02-26）：DAU 52.7M（+30%）、付费订阅 12.2M（+28%）、FY 营收 $1,037.6M（+39%）、预订额 $1,158.4M、$400M 回购、2026「重增长轻变现」战略（牺牲约 $50M 预订额）。<span class="u">sec.gov/Archives/edgar/data/1562088/000162828026012513</span></li>
+  <li>Duolingo, Inc. Q3 2025 Shareholder Letter（SEC EDGAR，2025-11-05）：MAU 135.3M（+20%）、Q3 营收 $271.7M（+41%）。</li>
+  <li>网易有道 FY2025 财务业绩（财报截止 2025-12-31）：全年营收 8.22 亿美元，净利 1,493 万美元；Q4 营收 2.21 亿美元。</li>
+  <li>QuestMobile 2025 年度奖项（光明网，2026-02-03）：有道词典连续七年获「Top50 赛道用户规模 No.1」，AI 同传累计用户破 2,000 万。<span class="u">baijiahao.baidu.com/s?id=1856099018613091068</span></li>
+  <li>QuestMobile / 非凡产研 2025 年 9 月教育类 AI 应用数据（转引自《电脑报少年派》、新浪财经，2025-12-02）：作业帮 MAU 9,863 万、小猿搜题/口算 3,000 万+（环比 +16%）、豆包爱学 MAU 环比 +19.16%、「AI+教育」2027 年市场规模预测 1,600 亿元（长江证券）。</li>
+  <li>AICPB《2025 年 12 月 AI 百强榜》（腾讯新闻/新浪财经，2026-02-04）：Gauth APP 端月活 2,600 万、WEB 端访问量 1,243 万，增长停滞分析（免费用户多、付费转化难）。<span class="u">new.qq.com/rain/a/20260204A05BK500</span></li>
+  <li>Sensor Tower 2025 Q4 报告（转引自跨境资讯，2026-06）：Gauth 下载量环比 +218%；2026 年 Gauth 获马来西亚教育部三年合作、覆盖 200 万学生。<span class="u">10100.com/article/141768600</span></li>
+  <li>Sensor Tower AI 应用 100 强（腾讯新闻，2026-04-29）：教育类 8 款上榜，Gauth 约 2,500 万月活领先，Photomath 紧随，小猿搜题/Brainly/Quizlet 千万级月活；Learna AI 700 万月活、月入近 1,300 万美元。<span class="u">new.qq.com/rain/a/20260429A088FS00</span></li>
+  <li>Sensor Tower / FoxData 2025 Q3 数据（转引自 DJ Capital，2025）：Gauth 季度下载约 200 万/营收约 $100 万（90% 美国）、Question.AI 约 25 万/$40 万、Photomath 约 190 万/$110 万；Gauth 2025.10 登顶美国教育免费榜。<span class="u">djcapital.net/nd.jsp?id=1365</span></li>
+  <li>iHuman Inc.（洪恩）Q3 2025 及 FY2025 未经审计财报（2025-12-29 / 2026-03-31）：FY2025 营收 8.07 亿元、净利 9,540 万元、全年平均 MAU 2,498 万；洪恩识字「动物乐园」、iHuman AI Pal、Aha World DAU +30%、AI 口语 App《FreeTalk》。<span class="u">ir.ihuman.com</span></li>
+  <li>魔镜洞察（转引自 DT 商业观察，2025）：中国电商渠道 2025.1–11 儿童智能手表销售额 52.5 亿元、销量 1,027.4 万台（超 2024 全年）；小天才线上份额 53.7%（1–10 月）。该口径不代表全球儿童智能手表市场规模。</li>
+  <li>洛图科技（RUNTO，转引自 DT 商业观察/湖南日报，2025）：2025 Q3 小天才销量同比 -14.2%、华为出货量 +31.5%（份额 +3.9%）；小天才 H1 线上销量份额 35.3% 第一。</li>
+  <li>红星新闻、今日头条、凤凰网等关于小天才「主页圈」社交灰产报道（2025-11）：点赞/积分/皮肤机制与账号买卖灰产。</li>
+  <li>Khan Academy Annual Report SY24-25 及官网 About 页：注册学员 2.27 亿、Khanmigo 用户一年 +731% 至 200 万、学区项目 94.5 万学生。<span class="u">annualreport.khanacademy.org</span></li>
+  <li>skillademia《Khan Academy Statistics 2026》（估算源）：MAU 约 3,500 万、资金结构（捐赠 65%/学区 19%/Khanmigo 16%）、斯坦福 1.8 倍掌握速度研究。<span class="u">skillademia.com/statistics/khan-academy-statistics</span></li>
+  <li>南方日报《多邻国的「抽象」生意经》（2025-11-14）：多儿 IP 运营、瑞幸/伊利联名、「多儿去世」事件 17 亿自然流量、中国 App Store 教育榜第 6。</li>
+  <li>教育部《中小学人工智能通识教育指南（2025 年版）》与《2025 年中国智慧教育白皮书》（2025-05，政策背景，不计入市场数据）。</li>
+  <li>窗口外保留数据说明：百词斩 MAU 922 万（网经社 2025 年 5 月榜）为窗口外最近可得值，仅作规模参考，未赋予增长维度优势。</li>
+</ol>
+</div>
+
+<div class="foot">
+  本报告基于公开信息整理分析，供产品决策参考，不构成投资建议。标有「估算」的数据请在关键决策前以官方口径二次核验。<br>
+  学习类 APP 市场调研报告 · 中国 × 美国 · 数据窗口 2025-08-02 ～ 2026-08-02 · 报告日期 2026-08-03
+</div>
+
+</div>
+<script>
+(() => {
+  const $ = (s, root=document) => [...root.querySelectorAll(s)];
+  const headings = $('h2.sec');
+  const navItems = [
+    ['一、调研方法', '方法与模型'], ['二、市场全景', '市场全景'], ['三、排行榜', '中美排行榜'],
+    ['五、游戏化方向', '游戏化方向'], ['六、盈利模式', '盈利模式'],
+    ['七、对「豆小包」', '豆小包策略'], ['八、Reference', '参考资料']
+  ];
+  const nav = document.querySelector('#report-nav');
+  navItems.forEach(([match, label], i) => {
+    const h = headings.find(x => x.textContent.includes(match));
+    if (!h) return;
+    h.id = `report-section-${i}`;
+    const a = document.createElement('a'); a.href = `#${h.id}`; a.textContent = label; nav.appendChild(a);
+  });
+  const chinaHead = headings.find(x => x.textContent.includes('排行榜 ①'));
+  const usaHead = headings.find(x => x.textContent.includes('排行榜 ②'));
+  const gameHead = headings.find(x => x.textContent.includes('游戏化方向'));
+  const rankTabs = document.createElement('div'); rankTabs.className='rank-tabs';
+  rankTabs.innerHTML='<button class="rank-tab active" data-country="cn">中国 Top 10</button><button class="rank-tab" data-country="us">美国 Top 10</button>';
+  chinaHead?.after(rankTabs);
+  const between = (from, to) => { const out=[]; let n=from?.nextElementSibling; while(n && n!==to){out.push(n); n=n.nextElementSibling} return out; };
+  // The tabs sit after the China heading, but must stay visible for both countries.
+  const chinaNodes = chinaHead ? between(chinaHead, usaHead).filter(n => n !== rankTabs) : [];
+  const usaNodes = usaHead ? between(usaHead, gameHead) : [];
+  const setCountry = country => {
+    chinaHead?.classList.toggle('rank-country-hidden', country!=='cn');
+    usaHead?.classList.toggle('rank-country-hidden', country!=='us');
+    chinaNodes.forEach(n => n.classList.toggle('rank-country-hidden', country!=='cn'));
+    usaNodes.forEach(n => n.classList.toggle('rank-country-hidden', country!=='us'));
+    document.querySelectorAll('.rank-tab').forEach(b => b.classList.toggle('active', b.dataset.country===country));
+  };
+  document.querySelectorAll('.rank-tab').forEach(b => b.addEventListener('click', () => setCountry(b.dataset.country)));
+  setCountry('cn');
+
+  const logo = {
+    '作业帮':'assets/learning-app-logos/zuoyebang.jpg','网易有道':'assets/learning-app-logos/youdao.jpg','小猿搜题':'assets/learning-app-logos/xiaoyuansouti.jpg','小猿 AI':'assets/learning-app-logos/xiaoyuanai.jpg','小猿口算':'assets/learning-app-logos/xiaoyuanai.jpg','快对 AI':'assets/learning-app-logos/kuaidui.jpg','快对':'assets/learning-app-logos/kuaidui.jpg','洪恩':'assets/learning-app-logos/hongen.jpg','多邻国':'assets/learning-app-logos/duolingo.jpg','Duolingo':'assets/learning-app-logos/duolingo.jpg','豆包爱学':'assets/learning-app-logos/doubaoaixue.jpg','学习通':'assets/learning-app-logos/xuexitong.jpg','百词斩':'assets/learning-app-logos/baicizhan.jpg','Quizlet':'assets/learning-app-logos/quizlet.jpg','Kahoot':'assets/learning-app-logos/kahoot.jpg','Khan Academy':'assets/learning-app-logos/khan.jpg','Gauth':'assets/learning-app-logos/gauth.jpg','Prodigy Math':'assets/learning-app-logos/prodigy.jpg','Question.AI':'assets/learning-app-logos/questionai.jpg','ClassDojo':'assets/learning-app-logos/classdojo.jpg','Photomath':'assets/learning-app-logos/photomath.jpg','Google Classroom':'assets/learning-app-logos/classroom.jpg'
+  };
+  const links = {
+    '作业帮':'https://www.zuoyebang.com/','网易有道':'https://www.youdao.com/','小猿搜题':'https://www.yuanfudao.com/','小猿 AI':'https://www.yuanfudao.com/','小猿口算':'https://www.yuanfudao.com/','快对 AI':'https://www.kuaiduizuoye.com/','快对':'https://www.kuaiduizuoye.com/','洪恩':'https://www.ihuman.com/','多邻国':'https://www.duolingo.com/','Duolingo':'https://www.duolingo.com/','豆包爱学':'https://www.doubao.com/','学习通':'https://www.chaoxing.com/','百词斩':'https://www.baicizhan.com/','Quizlet':'https://quizlet.com/','Kahoot':'https://kahoot.com/','Khan Academy':'https://www.khanacademy.org/','Gauth':'https://gauthmath.com/','Prodigy Math':'https://www.prodigygame.com/main-en/','Question.AI':'https://questionai.com/','ClassDojo':'https://www.classdojo.com/','Photomath':'https://photomath.com/','Google Classroom':'https://classroom.google.com/'
+  };
+  $('.app-name').forEach(el => {
+    const key = Object.keys(links).find(k => el.textContent.includes(k));
+    if (!key) return;
+    const img = document.createElement('img'); img.className='app-logo'; img.alt=''; img.src=logo[key] || '';
+    const anchor = document.createElement('a'); anchor.href=links[key]; anchor.target='_blank'; anchor.rel='noopener noreferrer'; anchor.textContent=el.textContent.trim(); anchor.style.color='inherit'; anchor.style.textDecoration='none';
+    el.textContent=''; el.append(img, anchor);
+  });
+
+  const gameCards=$('.gcard');
+  if (gameCards.length) {
+    const filters=document.createElement('div'); filters.className='game-filters'; filters.innerHTML='<button class="game-filter active" data-kind="all">全部</button><button class="game-filter" data-kind="habit">习惯</button><button class="game-filter" data-kind="growth">AI / 成长</button><button class="game-filter" data-kind="adventure">养成</button><button class="game-filter" data-kind="social">竞技 / 风险</button>';
+    gameHead?.after(filters);
+    gameCards.forEach(card=>{const text=card.textContent; card.dataset.kind=text.includes('连胜')?'habit':text.includes('IP')||text.includes('人格')?'growth':text.includes('养成')||text.includes('收集')?'adventure':text.includes('排行榜')||text.includes('社交')||text.includes('小天才')?'social':'growth'});
+    filters.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{filters.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));gameCards.forEach(c=>c.hidden=b.dataset.kind!=='all'&&c.dataset.kind!==b.dataset.kind)}));
+  }
+  const sections=$('h2.sec'); const navLinks=$('#report-nav a'); addEventListener('scroll',()=>{let cur=sections[0]; sections.forEach(s=>{if(s.getBoundingClientRect().top<140)cur=s}); navLinks.forEach(a=>a.classList.toggle('active',a.hash===`#${cur.id}`))},{passive:true});
+})();
+</script>
+</body>
+</html>
